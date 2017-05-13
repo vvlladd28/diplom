@@ -6,7 +6,6 @@ services:
     container_name: proxy
     ports:
       - 80:80
-      - 443:443
     volumes:
       - ./proxy/conf.d:/etc/nginx/conf.d
       - ./proxy/vhost.d:/etc/nginx/vhost.d
@@ -25,8 +24,6 @@ services:
     environment:
       - VIRTUAL_HOST=localhost
       - VIRTUAL_NETWORK=nginx-proxy
-      - LETSENCRYPT_HOST=localhost
-      - LETSENCRYPT_EMAIL=mail@domain.com
     volumes:
       - ./onlyoffice/DocumentServer/data:/var/www/onlyoffice/Data
       - ./onlyoffice/DocumentServer/document_fonts:/usr/share/fonts/truetype/custom
