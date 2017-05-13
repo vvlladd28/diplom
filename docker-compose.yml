@@ -7,10 +7,6 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./proxy/conf.d:/etc/nginx/conf.d
-      - ./proxy/vhost.d:/etc/nginx/vhost.d
-      - ./proxy/html:/usr/share/nginx/html
-      - ./proxy/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - proxy-tier
