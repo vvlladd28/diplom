@@ -1,5 +1,4 @@
 version: '2'
-
 services:
   proxy:
     image: jwilder/nginx-proxy
@@ -12,22 +11,6 @@ services:
       - proxy-tier
     restart: always
 
-  onlyoffice:
-    image: onlyoffice/documentserver:latest
-    container_name: onlyoffice-document-server
-    ports:
-      - 8080:80
-    environment:
-      - VIRTUAL_HOST=localhost
-      - VIRTUAL_NETWORK=nginx-proxy
-    volumes:
-      - ./onlyoffice/DocumentServer/data:/var/www/onlyoffice/Data
-      - ./onlyoffice/DocumentServer/document_fonts:/usr/share/fonts/truetype/custom
-      - ./onlyoffice/DocumentServer/logs:/var/log/onlyoffice
-    networks:
-      - proxy-tier
-    restart: always
-  
   letsencrypt-companion:
     image: alastaircoote/docker-letsencrypt-nginx-proxy-companion
     container_name: letsencrypt-companion
@@ -45,7 +28,6 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     links:
       - app
-      - onlyoffice
     volumes_from:
       - app
     environment:
@@ -53,7 +35,7 @@ services:
       - VIRTUAL_NETWORK=nginx-proxy
       - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=localhost
-      - LETSENCRYPT_EMAIL=yanat.74@list.ru
+      - LETSENCRYPT_EMAIL=yanat@mail.ru
     networks:
       - proxy-tier
     restart: always
@@ -77,10 +59,10 @@ services:
     volumes:
       - ./nextcloud/db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=Dkflbr28
+      - MYSQL_ROOT_PASSWORD=qwerty78
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=qwerty78
+      - MYSQL_PASSWORD=qwerty67
     networks:
       - proxy-tier
     restart: always
