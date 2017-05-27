@@ -48,6 +48,7 @@ if version_greater "$image_version" "$installed_version"; then
 fi
 
 cp -R /var/www/html/custom_apps/onlyoffice /var/www/html/apps/onlyoffice
+chown -R www-data:www-data /var/www/html
 rm -rf /var/www/html/custom_apps/onlyoffice
 
 exec "$@"
