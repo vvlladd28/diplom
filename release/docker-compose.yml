@@ -1,8 +1,8 @@
 version: '2'
 services:
   nextcloud:
+    build: .
     container_name: nextcloud
-    image: nextcloudlocal
     links:
       - nextcloud-mariadb
       - nextcloud-redis
